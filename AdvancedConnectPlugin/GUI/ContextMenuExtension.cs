@@ -51,21 +51,33 @@ namespace AdvancedConnectPlugin.GUI
 
                 //Add a menuItem for each connection method and each programm with this connection method
                 Array.Sort<String>(methodArr);
-                foreach (var method in methodArr)
+                Boolean addSeperator = false;
+                foreach (var methodStr in methodArr)
                 {
-                    //Add Builtin RDP support entries
-                    if (this.plugin.settings.enableBuiltinRDP && this.plugin.settings.rdpConnectionMethod == method)
+                    //support define connection-method in URL like:  ssh://*******,sftp://******
+                    int index = methodStr.IndexOf("://");
+                    string method = methodStr;
+                    if (index > 0)
                     {
+                        method = methodStr.Substring(0, index);
+                    }
+                    //Add Builtin RDP support entries
+                    if (this.plugin.settings.enableBuiltinRDP && method =="rdp")
+                    //if (this.plugin.settings.enableBuiltinRDP && this.plugin.settings.rdpConnectionMethod == method)
+                    {
+                        addSeperator = true;
                         menuItem = new ToolStripMenuItem();
                         menuItem.Text = "Remote Desktop";
-                        try { menuItem.Image = System.Drawing.Icon.ExtractAssociatedIcon(Data.RDPConnectionItem.pathToRemoteDesktop).ToBitmap(); } catch (Exception) { } //Extracts the icon from the executable and sets it as context menut item bitmap
+                        try { menuItem.Image = System.Drawing.Icon.ExtractAssociatedIcon(Data.RDPConnectionItem.pathToRemoteDesktop).ToBitmap(); }
+                        catch (Exception) { } //Extracts the icon from the executable and sets it as context menut item bitmap
                         menuItem.Tag = new Data.RDPConnectionItem(this.plugin, selectedEntries[0], false); //Contains the spezific connectionitem (kpentry) object reference
                         menuItem.Click += entryContextMenuItem_RDPApplication_Click;
                         menuItemList.Add(menuItem);
 
                         menuItem = new ToolStripMenuItem();
                         menuItem.Text = "Remote Desktop (Console)";
-                        try { menuItem.Image = System.Drawing.Icon.ExtractAssociatedIcon(Data.RDPConnectionItem.pathToRemoteDesktop).ToBitmap(); } catch (Exception) { } //Extracts the icon from the executable and sets it as context menut item bitmap
+                        try { menuItem.Image = System.Drawing.Icon.ExtractAssociatedIcon(Data.RDPConnectionItem.pathToRemoteDesktop).ToBitmap(); }
+                        catch (Exception) { } //Extracts the icon from the executable and sets it as context menut item bitmap
                         menuItem.Tag = new Data.RDPConnectionItem(this.plugin, selectedEntries[0], true); //Contains the spezific connectionitem (kpentry) object reference
                         menuItem.Click += entryContextMenuItem_RDPApplication_Click;
                         menuItemList.Add(menuItem);
@@ -76,6 +88,7 @@ namespace AdvancedConnectPlugin.GUI
                     {
                         if (method == application.method)
                         {
+                            addSeperator = true;
                             menuItem = new ToolStripMenuItem();
                             menuItem.Text = application.name;
                             try { menuItem.Image = System.Drawing.Icon.ExtractAssociatedIcon(Environment.ExpandEnvironmentVariables(application.path)).ToBitmap(); } catch (Exception) { } //Resolvs OS variables and extracts the icon from the executable and sets it as context menut item bitmap
@@ -88,8 +101,10 @@ namespace AdvancedConnectPlugin.GUI
                 }
 
                 //Add seperator to list 
-                menuItemList.Add(new ToolStripSeparator());
-
+                if (addSeperator)
+                {
+                    menuItemList.Add(new ToolStripSeparator());
+                }
 
                 //Insert all items to the top of the context menu (reverse order)
                 for (int i = menuItemList.Count - 1; i >= 0; i--)

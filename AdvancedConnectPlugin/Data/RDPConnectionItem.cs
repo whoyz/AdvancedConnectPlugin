@@ -71,7 +71,7 @@ namespace AdvancedConnectPlugin.Data
                         StartProcess.Start(RDPConnectionItem.pathToRemoteDesktop, fillPlaceholders(buildRDPParameter()));
 
                         //Wait before credential remove
-                        Thread.Sleep(TimeSpan.FromMilliseconds(5000));
+                        Thread.Sleep(TimeSpan.FromMilliseconds(3000));
 
                         //Fill placeholders in options and start programm with thread delay(cmdkey removes the previous set rdp credentials)
                         StartProcess.Start(RDPConnectionItem.pathToCMDKey, fillPlaceholders(buildRemovingCmdkeyParameter()));
@@ -95,7 +95,12 @@ namespace AdvancedConnectPlugin.Data
 
         private String buildRDPParameter()
         {
-            this.rdpParameter = "/v:" + this.keepassEntry.Strings.ReadSafe(this.plugin.settings.rdpConnectionAddressField);
+            //support define connection-method in URL like:  ssh://*******,sftp://******
+            string url = this.keepassEntry.Strings.ReadSafe(this.plugin.settings.rdpConnectionAddressField);
+            int index = url.IndexOf("://");
+            string srv = url.Substring(index+3);
+  
+            this.rdpParameter = "/v:" + srv;
             if (this.rdpConsoleSession) {
                 this.rdpParameter = this.rdpParameter + " /admin /console";
             }
@@ -107,15 +112,24 @@ namespace AdvancedConnectPlugin.Data
         //Creating cmdkey parameters with Keepass placeholders
         private String buildAddingCmdkeyParameter()
         {
-            this.cmdkeyParameter = "/generic:TERMSRV/" + this.keepassEntry.Strings.ReadSafe(this.plugin.settings.rdpConnectionAddressField) 
-                + " /user:{USERNAME} /pass:{PASSWORD}";
+            //support define connection-method in URL like:  ssh://*******,sftp://******
+            string url = this.keepassEntry.Strings.ReadSafe(this.plugin.settings.rdpConnectionAddressField);
+            int index = url.IndexOf("://");
+            string srv = url.Substring(index + 3);
+  
+            this.cmdkeyParameter = "/generic:TERMSRV/" + srv + " /user:{USERNAME} /pass:{PASSWORD}";
             return this.cmdkeyParameter;
         }
 
         //Creating cmdkey parameters with Keepass placeholders
         private String buildRemovingCmdkeyParameter()
         {
-            this.cmdkeyParameter = "/delete:TERMSRV/" + this.keepassEntry.Strings.ReadSafe(this.plugin.settings.rdpConnectionAddressField);
+            //support define connection-method in URL like:  ssh://*******,sftp://******
+            string url = this.keepassEntry.Strings.ReadSafe(this.plugin.settings.rdpConnectionAddressField);
+            int index = url.IndexOf("://");
+            string srv = url.Substring(index + 3);
+  
+            this.cmdkeyParameter = "/delete:TERMSRV/" + srv;
             return this.cmdkeyParameter;
         }
 
