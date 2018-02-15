@@ -26,6 +26,9 @@ The **Path** and **Commandline Options** column is also supporting keepass place
 
 
 ## Example
+- Configure Method in URL
+<p align="center"><img src="https://github.com/whoyz/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-MethodURL.png"/></p>
+
 - Configure main options
 <p align="center"><img src="https://github.com/aalbng/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-Main.png"/></p>
 - Add your applications
@@ -42,14 +45,6 @@ Please take note that launching applications via command-line can expose your pa
 ## Repository
 
 The main repository is hosted on [GitHub](https://github.com/aalbng/AdvancedConnectPlugin).
-
-## Changelog
-
-See [CHANGELOG](https://github.com/aalbng/AdvancedConnectPlugin/blob/master/AdvancedConnectPlugin/CHANGELOG.txt) file for details.
-
-## Download
-
-You can get all binaries from [here](https://github.com/aalbng/AdvancedConnectPlugin/releases).
 
 ## License
 
