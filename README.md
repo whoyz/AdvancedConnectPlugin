@@ -32,8 +32,9 @@ The **Path** and **Commandline Options** column is also supporting keepass place
 - Enabel/Disable Protocol
 <p align="center"><img src="https://github.com/whoyz/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-Enbale&Disable.png"/></p>
 
-- Configure main options
-<p align="center"><img src="https://github.com/aalbng/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-Main.png"/></p>
+- SimplifiedConfiguration
+<p align="center"><img src="https://github.com/whoyz/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-SimplifiedConfiguration.png"/></p>
+
 - Add your applications
 <p align="center"><img src="https://github.com/aalbng/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-Applications.png"/></p>
 
