@@ -71,29 +71,35 @@ namespace AdvancedConnectPlugin.GUI
             //Building GridView with BindingList as source
             this.dataGridViewApplications.DataSource = plugin.settings.applicationsBindingList;
 
+            this.dataGridViewApplications.Columns["enable"].HeaderText = "Enable";
+            this.dataGridViewApplications.Columns["enable"].MinimumWidth = 50;
+            this.dataGridViewApplications.Columns["enable"].Width = 50;
+            this.dataGridViewApplications.Columns["enable"].DisplayIndex = 0;
+
             this.dataGridViewApplications.Columns["name"].HeaderText = "Application Name";
             this.dataGridViewApplications.Columns["name"].MinimumWidth = 100;
             this.dataGridViewApplications.Columns["name"].Width = 100;
-            this.dataGridViewApplications.Columns["name"].DisplayIndex = 0;
+            this.dataGridViewApplications.Columns["name"].DisplayIndex = 1;
 
             this.dataGridViewApplications.Columns["method"].HeaderText = "Method / Protocol";
             this.dataGridViewApplications.Columns["method"].Width = 70;
             this.dataGridViewApplications.Columns["method"].MinimumWidth = 70;
-            this.dataGridViewApplications.Columns["method"].DisplayIndex = 1;
+            this.dataGridViewApplications.Columns["method"].DisplayIndex = 2;
 
             this.dataGridViewApplications.Columns["path"].HeaderText = "Path";
             this.dataGridViewApplications.Columns["path"].Width = 120;
             this.dataGridViewApplications.Columns["path"].MinimumWidth = 120;
-            this.dataGridViewApplications.Columns["path"].DisplayIndex = 2;
+            this.dataGridViewApplications.Columns["path"].DisplayIndex = 3;
 
             this.dataGridViewApplications.Columns["options"].HeaderText = "Commandline Options";
             this.dataGridViewApplications.Columns["options"].Width = 100;
             this.dataGridViewApplications.Columns["options"].MinimumWidth = 100;
             this.dataGridViewApplications.Columns["options"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewApplications.Columns["options"].DisplayIndex = 3;
+            this.dataGridViewApplications.Columns["options"].DisplayIndex = 4;
 
+            
             //Sort columns initial by name
-            this.dataGridViewApplications.Sort(this.dataGridViewApplications.Columns["name"], ListSortDirection.Ascending);            
+            this.dataGridViewApplications.Sort(this.dataGridViewApplications.Columns["method"], ListSortDirection.Ascending);            
         }
 
 

@@ -86,7 +86,7 @@ namespace AdvancedConnectPlugin.GUI
                     //Add Custom applications (loop)
                     foreach (var application in this.plugin.settings.applicationsBindingList)
                     {
-                        if (method == application.method)
+                        if (method == application.method && application.enable == true)
                         {
                             addSeperator = true;
                             menuItem = new ToolStripMenuItem();

@@ -23,16 +23,18 @@ namespace AdvancedConnectPlugin.Data
         public String method { get; set; }
         public String path { get; set; }
         public String options { get; set; }
+        public Boolean enable { get; set; }
 
         public ApplicationItem()
         {
         }
-        public ApplicationItem(String name, String method, String path, String options)
+        public ApplicationItem(String name, String method, String path, String options, Boolean enable)
         {
             this.name = name;
             this.method = method;
             this.path = path;
             this.options = options;
+            this.enable = enable;
         }
 
     }
