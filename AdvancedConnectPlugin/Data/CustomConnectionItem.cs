@@ -38,13 +38,7 @@ namespace AdvancedConnectPlugin.Data
 
             //Check if application path exist with resolved OS variables
             if (File.Exists(Environment.ExpandEnvironmentVariables(this.application.path)))
-            {
-                //Overwrite application options if set in keepass entry
-                if (this.keepassEntry.Strings.ReadSafe(this.plugin.settings.connectionOptionsField).Length > 0)
-                {
-                    this.customConnectionOptions = this.keepassEntry.Strings.ReadSafe(this.plugin.settings.connectionOptionsField);
-                }
-                
+            {              
                 //Create a thread to allow non gui blocking sleeps
                 new Thread(() =>
                 {
@@ -54,11 +48,10 @@ namespace AdvancedConnectPlugin.Data
                     StartProcess.Start(fillPlaceholders(this.application.path), fillPlaceholders(this.customConnectionOptions));
                 }).Start();
 
-
                 return true;
             }else
             {
-                errorMessage = ("Application '" + application.path + "' not found!");
+                errorMessage = ("Application '" + this.application.path + "' not found!");
                 return false;
             }
 

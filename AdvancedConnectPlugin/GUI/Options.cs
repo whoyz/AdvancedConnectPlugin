@@ -36,19 +36,14 @@ namespace AdvancedConnectPlugin.GUI
 
             //Add empty values to text-, ceck- and comboboxes
             this.comboBoxConnectionMethod.Items.Add(String.Empty);
-            this.comboBoxConncectionOptions.Items.Add(String.Empty);
-            this.checkBoxEnableBuiltinRDP.Checked = true;
-            this.comboBoxRDPConncectionAddress.Items.Add(String.Empty);
-            this.textBoxRDPConnectionMethod.Text = String.Empty;
-            this.textBoxRDPCustomParameter.Text = String.Empty;
+            this.checkBoxEnableRDPFullScreen.Checked = true;
 
             //Load connection mapping from config
             this.comboBoxConnectionMethod.Text = plugin.settings.connectionMethodField;
-            this.comboBoxConncectionOptions.Text = plugin.settings.connectionOptionsField;
             this.checkBoxEnableBuiltinRDP.Checked = plugin.settings.enableBuiltinRDP;
-            this.comboBoxRDPConncectionAddress.Text = plugin.settings.rdpConnectionAddressField;
-            this.textBoxRDPConnectionMethod.Text = plugin.settings.rdpConnectionMethod;
-            this.textBoxRDPCustomParameter.Text = plugin.settings.rdpCustomParameter;
+            this.checkBoxEnableRDPFullScreen.Checked = plugin.settings.enableRDPFullScreen;
+            this.textBoxRDPWidth.Text = plugin.settings.rdpWidth;
+            this.textBoxRDPHeight.Text = plugin.settings.rdpHeight;
             
             //Check if database is open to load the custom values from db
             //(Lock configuration items if databse is closed)
@@ -58,14 +53,10 @@ namespace AdvancedConnectPlugin.GUI
                 foreach (var field in dbFields)
                 {
                     this.comboBoxConnectionMethod.Items.Add(field);
-                    this.comboBoxConncectionOptions.Items.Add(field);
-                    this.comboBoxRDPConncectionAddress.Items.Add(field);
                 }            
             } else
             {
                 this.comboBoxConnectionMethod.Enabled = false;
-                this.comboBoxConncectionOptions.Enabled = false;
-                this.comboBoxRDPConncectionAddress.Enabled = false;
             }
 
             //Building GridView with BindingList as source
@@ -132,12 +123,10 @@ namespace AdvancedConnectPlugin.GUI
         {
             //Write fields into settings;
             this.plugin.settings.connectionMethodField = this.comboBoxConnectionMethod.Text;
-            this.plugin.settings.connectionOptionsField = this.comboBoxConncectionOptions.Text;
             this.plugin.settings.enableBuiltinRDP = this.checkBoxEnableBuiltinRDP.Checked;
-            this.plugin.settings.rdpConnectionAddressField = this.comboBoxRDPConncectionAddress.Text;
-            this.plugin.settings.rdpConnectionMethod = this.textBoxRDPConnectionMethod.Text;
-            this.plugin.settings.rdpCustomParameter = this.textBoxRDPCustomParameter.Text;
-
+            this.plugin.settings.enableRDPFullScreen = this.checkBoxEnableRDPFullScreen.Checked;
+            this.plugin.settings.rdpWidth = this.textBoxRDPWidth.Text;
+            this.plugin.settings.rdpHeight = this.textBoxRDPHeight.Text;
 
             //Write settings to settings file
             if (this.plugin.settings.save() == false)
@@ -168,6 +157,9 @@ namespace AdvancedConnectPlugin.GUI
             this.plugin.settings.applicationsBindingList.Add(new Data.ApplicationItem());
         }
 
+        private void checkBoxEnableRDPFullScreen_CheckedChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

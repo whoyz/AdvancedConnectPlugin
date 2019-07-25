@@ -30,17 +30,16 @@ namespace AdvancedConnectPlugin.Data
 
         [XmlElement(ElementName = "ConnectionMethodField")]
         public String connectionMethodField = String.Empty;
-        [XmlElement(ElementName = "ConnectionOptionsField")]
-        public String connectionOptionsField = String.Empty;
-
         [XmlElement(ElementName = "EnableBuiltinRDP")]
         public Boolean enableBuiltinRDP = true;
-        [XmlElement(ElementName = "RDPConnectionAddressField")]
-        public String rdpConnectionAddressField = String.Empty;
-        [XmlElement(ElementName = "RDPConnectionMethod")]
-        public String rdpConnectionMethod = String.Empty;
-        [XmlElement(ElementName = "RDPCustomParameter")]
-        public String rdpCustomParameter = String.Empty;
+        [XmlElement(ElementName = "EnableRDPFullScreen")]
+        public Boolean enableRDPFullScreen = true;
+        [XmlElement(ElementName = "RDPWidth")]
+        public String rdpWidth = String.Empty;
+        [XmlElement(ElementName = "RDPHeight")]
+        public String rdpHeight = String.Empty;        
+        //[XmlElement(ElementName = "RDPCustomParameter")]
+        //public String rdpCustomParameter = String.Empty;
 
         [XmlArray("ApplicationList"),XmlArrayItem(Type = typeof(ApplicationItem))]
         public SortableBindingList<ApplicationItem> applicationsBindingList = new SortableBindingList<ApplicationItem>();

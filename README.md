@@ -29,12 +29,14 @@ The **Path** and **Commandline Options** column is also supporting keepass place
 - Configure Method in URL
 <p align="center"><img src="https://github.com/whoyz/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-MethodURL.png"/></p>
 
+- Enabel/Disable Protocol
+<p align="center"><img src="https://github.com/whoyz/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-Enbale&Disable.png"/></p>
+
 - Configure main options
 <p align="center"><img src="https://github.com/aalbng/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-Main.png"/></p>
 - Add your applications
 <p align="center"><img src="https://github.com/aalbng/AdvancedConnectPlugin/blob/master/Doc/AdvancedConnect_Options-Applications.png"/></p>
-- Set custom fields in keepass entries
-<p align="center"><img src="https://github.com/aalbng/AdvancedConnectPlugin/blob/master/Doc/Keepass_CustomFields.png"/></p>
+
 - Start your applications directly from keepass
 <p align="center"><img src="https://github.com/aalbng/AdvancedConnectPlugin/blob/master/Doc/Keepass_ContexMenu.png"/></p>
 
