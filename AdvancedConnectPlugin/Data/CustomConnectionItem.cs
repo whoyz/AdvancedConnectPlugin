@@ -14,6 +14,7 @@ using AdvancedConnectPlugin.Tools;
 using KeePassLib;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace AdvancedConnectPlugin.Data
@@ -29,7 +30,22 @@ namespace AdvancedConnectPlugin.Data
             this.keepassDatabase = this.plugin.keepassHost.Database;
             this.application = application;
             this.keepassEntry = keepassEntry;
-            this.customConnectionOptions = this.application.options;
+
+            String options = this.application.options;
+            // Support optional some OPT like: [ string value |default value ], if string value is null, it will set OPT value to default value.
+            if (Regex.IsMatch(options, @"\[\|"))
+            {
+                options = Regex.Replace(options, @"\[\|", "");
+                options = Regex.Replace(options, @"\]", "");
+            }
+            else
+            {
+                options = Regex.Replace(options, @"\|.*\]", "");
+                options = Regex.Replace(options, @"\[", "");
+            }
+
+
+            this.customConnectionOptions = options;
         }
                 
         public Boolean startConnection(out String errorMessage)
